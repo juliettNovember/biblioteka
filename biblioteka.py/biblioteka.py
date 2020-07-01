@@ -1,5 +1,6 @@
 import random
 import operator
+from dataclasses import dataclass
 
 
 full_list = []
@@ -66,7 +67,7 @@ class FilmSeriesList:
                     print (self.full_list[i])
 
 class Movie:
-    def __init__ (self, title, year, species, plays):
+    def __init__ (self, title: str, year: int, species: str, plays: int):
         self.title = title
         self.year = year
         self.species = species
@@ -82,12 +83,17 @@ film1 = Movie(title = "Saving Private Ryan", year = "1998", species = "war drama
 film2 = Movie(title = "First Man", year = "2018", species = "biographical", plays=400)
 film3 = Movie(title = "The Green Mile", year = "1999", species = "drama", plays = 0)
 
+@dataclass
+class Movie:
+    title: str
+    year: int
+    species: str
+    plays: int
+
 
 class Serial(Movie):
-    def __init__(self, serie, episode, *args, **kwargs):
+    def __init__(self, serie: int, episode: int, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.serie = serie.zfill(2)
-        self.episode = episode.zfill(2)
 
     def __str__(self):
         return f"{self.title} S{self.serie}E{self.episode} plays: {self.plays}"
@@ -96,9 +102,18 @@ serie1 = Serial(title = "Greys Anatomy", year = "2005", species = "comedy-drama"
 serie2 = Serial(title = "Breaking Bad", year = "2008", species = "comedy", serie = "5", episode = "17", plays = 0)
 serie3 = Serial(title = "La Casa Del Papel", year = "2017", species = "thriller", serie = "3", episode = "7", plays = 0)
 
+@dataclass
+class Serial:
+    title: str
+    year: int
+    species: str
+    serie: str
+    episode: int
+    plays: int
+
 library=FilmSeriesList()
 library.add(film1)
-library.add(film2)
+library.add(film)
 library.add(film3)
 library.add(serie1)
 library.add(serie2)
