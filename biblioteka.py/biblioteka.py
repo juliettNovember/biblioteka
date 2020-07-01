@@ -94,6 +94,8 @@ class Movie:
 class Serial(Movie):
     def __init__(self, serie: int, episode: int, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.serie = serie
+        self.episode = episode
 
     def __str__(self):
         return f"{self.title} S{self.serie}E{self.episode} plays: {self.plays}"
@@ -113,7 +115,7 @@ class Serial:
 
 library=FilmSeriesList()
 library.add(film1)
-library.add(film)
+library.add(film2)
 library.add(film3)
 library.add(serie1)
 library.add(serie2)
