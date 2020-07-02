@@ -2,21 +2,16 @@ import random
 import operator
 from dataclasses import dataclass
 
-
 full_list = []
-
 
 class FilmSeriesList:
     def __init__(self):
         self.full_list = []
-        self.movie_list = []
-        self.series_list = []
-        self.text_series_list=[]
-        self.text_movie_list = []
 
     def add(self, movie):
+        
         self.full_list.append(movie)
-
+       
     def show_all(self):
         for i in self.full_list:
             print(i)
@@ -129,8 +124,9 @@ while True:
         library.show_all()
         continue
     elif command =="2":
-        library.add()
+        library.add(film_add)
         continue
+    
     elif command =="3":
         library.get_movies()
         continue
@@ -155,5 +151,3 @@ while True:
     else:
         print("invalid command!")
 
-#print(library.search("Greys Anatomy"))
-#print(library.generate_views(full_list_item))
