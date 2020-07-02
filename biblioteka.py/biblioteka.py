@@ -77,13 +77,6 @@ film1 = Movie(title = "Saving Private Ryan", year = "1998", species = "war drama
 film2 = Movie(title = "First Man", year = "2018", species = "biographical", plays=400)
 film3 = Movie(title = "The Green Mile", year = "1999", species = "drama", plays = 0)
 
-@dataclass
-class Movie:
-    title: str
-    year: int
-    species: str
-    plays: int
-
 
 class Serial(Movie):
     def __init__(self, serie: int, episode: int, *args, **kwargs):
@@ -99,7 +92,7 @@ serie2 = Serial(title = "Breaking Bad", year = "2008", species = "comedy", serie
 serie3 = Serial(title = "La Casa Del Papel", year = "2017", species = "thriller", serie = "3", episode = "7", plays = 0)
 
 @dataclass
-class Serial:
+class Serial(Movie):
     title: str
     year: int
     species: str
