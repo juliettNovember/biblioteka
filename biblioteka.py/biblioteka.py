@@ -2,10 +2,11 @@ import random
 import operator
 from dataclasses import dataclass
 
-
+@dataclass
 class FilmSeriesList:
-    def __init__(self):
-        self.full_list = []
+    #def __init__(self):
+    #    self.full_list = []
+    full_list=[]
 
     def add(self, movie):
         
@@ -59,13 +60,12 @@ class FilmSeriesList:
         self.full_list.sort(key=operator.attrgetter('plays'), reverse=True)
         for i in range (int(quantity)):
                     print (self.full_list[i])
-
+@dataclass
 class Movie:
-    def __init__ (self, title: str, year: int, species: str, plays: int):
-        self.title = title
-        self.year = year
-        self.species = species
-        self.plays = plays
+    title: str 
+    year: int
+    species: str
+    plays:int 
 
     def __str__ (self):
         return f"{self.title} {self.year} plays: {self.plays}"
@@ -78,27 +78,26 @@ film2 = Movie(title = "First Man", year = "2018", species = "biographical", play
 film3 = Movie(title = "The Green Mile", year = "1999", species = "drama", plays = 0)
 
 
+
+
+# próbowalam uzyc tu dataclass, ale wtedy nie wiem jak uzyc funkcji .zfill(2) ktora wedlug 
+# tresci zadania musi tu byc, bo episode i serie ma byc w notacji dwucyfrowej
+
 class Serial(Movie):
     def __init__(self, serie: int, episode: int, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.serie = serie
-        self.episode = episode
+        self.serie = serie.zfill(2)
+        self.episode = episode.zfill(2)
 
     def __str__(self):
         return f"{self.title} S{self.serie}E{self.episode} plays: {self.plays}"
+
+
 
 serie1 = Serial(title = "Greys Anatomy", year = "2005", species = "comedy-drama", serie = "1", episode = "15", plays = 0)
 serie2 = Serial(title = "Breaking Bad", year = "2008", species = "comedy", serie = "5", episode = "17", plays = 0)
 serie3 = Serial(title = "La Casa Del Papel", year = "2017", species = "thriller", serie = "3", episode = "7", plays = 0)
 
-@dataclass
-class Serial(Movie):
-    title: str
-    year: int
-    species: str
-    serie: str
-    episode: int
-    plays: int
 
 library=FilmSeriesList()
 library.add(film1)
@@ -117,10 +116,17 @@ while True:
         continue
     elif command =="2":
         command = input("1-Movie\n2-Serie")
-        command_title = input("Title")
-        command_year = input("Year")
-        command_species = input("Species")
-        film_add = Movie(title = command_title, year = int(command_year), species = command_species, plays = 0)
+        command_title = input("Title?:")
+        command_year = input("Year?:")
+        command_species = input("Species?:")
+        if command == 2:
+            command_serie= input("Serie?:")
+            command_episode= input("Episode?:")
+            film_add = Movie(title = command_title, year = command_year, species = command_species, serie = command_serie, episode = command_episode, plays = 0)
+        else:
+            film_add = Movie(title = command_title, year = command_year, species = command_species, plays = 0)
+       
+       
         library.add(film_add)
         continue
     
