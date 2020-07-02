@@ -2,7 +2,6 @@ import random
 import operator
 from dataclasses import dataclass
 
-full_list = []
 
 class FilmSeriesList:
     def __init__(self):
@@ -124,6 +123,11 @@ while True:
         library.show_all()
         continue
     elif command =="2":
+        command = input("1-Movie\n2-Serie")
+        command_title = input("Title")
+        command_year = input("Year")
+        command_species = input("Species")
+        film_add = Movie(title = command_title, year = int(command_year), species = command_species, plays = 0)
         library.add(film_add)
         continue
     
